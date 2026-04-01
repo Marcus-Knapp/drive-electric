@@ -543,40 +543,44 @@ textarea.form-input { resize: vertical; min-height: 80px; }
 // ─── CONFIGURATION ───────────────────────────────────────────────────────────
 const CONFIG = {
   // ⚡ UPDATE THESE with your Google Apps Script Web App URL
-  SCRIPT_URL: "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID_HERE/exec",
+  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxeRFllX17PHzlIq6X91fSeiLEGdgTyJNfmZueXSmJD3luW3thRmOrxsTg79AY_WqXa/exec",
   
   EVENT_NAME: "Drive Electric",
   EVENT_VENUE: "Read Motor Group",
-  EVENT_DATES: "12th – 13th April 2026",
+  EVENT_DATES: "5th – 8th June 2026",
   EVENT_TAGLINE: "Experience the future of electric driving",
-  BRANCHES: ["Read Hyundai Sunderland", "Read Hyundai Durham", "Read Hyundai Newcastle"],
+  BRANCHES: ["Read Hyundai Kings Lynn", "Read Hyundai Boston", "Read Hyundai Lincoln", "Read Hyundai Worksop", "Read Hyundai Burton"],
   
   // Set to false once Google Sheets backend is connected
-  DEMO_MODE: true,
+  DEMO_MODE: false,
 };
 
 // ─── DEMO DATA ───────────────────────────────────────────────────────────────
 const DEMO_DATA = {
   dates: [
-    { date: "2026-04-12", label: "Saturday 12th April" },
-    { date: "2026-04-13", label: "Sunday 13th April" },
+    { date: "2026-06-05", label: "Friday 5th June" },
+    { date: "2026-06-06", label: "Saturday 6th June" },
+    { date: "2026-06-07", label: "Sunday 7th June" },
+    { date: "2026-06-08", label: "Monday 8th June" },
   ],
   timeSlots: [
-    "09:00","09:30","10:00","10:30","11:00","11:30",
-    "12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00",
+    "09:00", "10:30", "12:00", "13:30", "15:00", "16:30",
   ],
   salesExecs: [
-    { id: "se1", name: "James Wilson", branch: "Read Hyundai Sunderland" },
-    { id: "se2", name: "Sarah Thompson", branch: "Read Hyundai Sunderland" },
-    { id: "se3", name: "Michael Roberts", branch: "Read Hyundai Durham" },
-    { id: "se4", name: "Emma Clarke", branch: "Read Hyundai Durham" },
-    { id: "se5", name: "David Brown", branch: "Read Hyundai Newcastle" },
-    { id: "se6", name: "Lucy Henderson", branch: "Read Hyundai Newcastle" },
+    { id: "se1", name: "Sales Exec 1", branch: "Read Hyundai Kings Lynn" },
+    { id: "se2", name: "Sales Exec 2", branch: "Read Hyundai Kings Lynn" },
+    { id: "se3", name: "Sales Exec 3", branch: "Read Hyundai Boston" },
+    { id: "se4", name: "Sales Exec 4", branch: "Read Hyundai Boston" },
+    { id: "se5", name: "Sales Exec 5", branch: "Read Hyundai Lincoln" },
+    { id: "se6", name: "Sales Exec 6", branch: "Read Hyundai Lincoln" },
+    { id: "se7", name: "Sales Exec 7", branch: "Read Hyundai Worksop" },
+    { id: "se8", name: "Sales Exec 8", branch: "Read Hyundai Worksop" },
+    { id: "se9", name: "Sales Exec 9", branch: "Read Hyundai Burton" },
+    { id: "se10", name: "Sales Exec 10", branch: "Read Hyundai Burton" },
   ],
   bookedSlots: [
-    { date: "2026-04-12", time: "10:00", execId: "se1" },
-    { date: "2026-04-12", time: "10:30", execId: "se1" },
-    { date: "2026-04-12", time: "11:00", execId: "se3" },
+    { date: "2026-06-05", time: "10:30", execId: "se1" },
+    { date: "2026-06-06", time: "12:00", execId: "se3" },
   ],
 };
 
