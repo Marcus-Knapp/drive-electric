@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#002C5F">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Hyundai Drive Electric | Read Motor Group</title>
+<meta name="description" content="Book your Hyundai Drive Electric experience with Read Motor Group. Test drive the latest electric and hybrid vehicles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* HYUNDAI DRIVE ELECTRIC — COMPLETE STYLES                                  */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --h-primary: #002C5F;
+  --h-primary-light: #003D7A;
+  --h-accent: #00AAD2;
+  --h-accent-glow: #00C8F0;
+  --h-white: #FFFFFF;
+  --h-off-white: #F6F8FA;
+  --h-light-grey: #E8ECF0;
+  --h-mid-grey: #8C939A;
+  --h-dark-grey: #394553;
+  --h-text: #1A1A1A;
+  --h-success: #00A878;
+  --h-error: #D0342C;
+  --h-electric: #00E5FF;
+  --h-electric-dim: rgba(0,229,255,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
+  background: var(--h-off-white);
+  color: var(--h-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+@keyframes electricGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,170,210,0.3); }
+  50% { box-shadow: 0 0 40px rgba(0,170,210,0.6); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-in { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+
+/* Form Elements */
+input, select, textarea {
+  font-family: 'Noto Sans', sans-serif;
+  transition: all 0.2s ease;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--h-accent) !important;
+  box-shadow: 0 0 0 3px var(--h-electric-dim);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--h-light-grey); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--h-mid-grey); }
+
+/* ── SCREENS ─────────────────────────────────────────────────────────────── */
+
+/* Gate Screen */
+.gate-screen {
+  min-height: 100vh; display: flex; flex-direction: column;
+  background: linear-gradient(165deg, var(--h-primary) 0%, #001A3A 50%, #000D1F 100%);
+  position: relative; overflow: hidden;
+}
+.gate-bg-orb {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, var(--h-electric-dim) 0%, transparent 70%);
+}
+.gate-bg-orb-1 { top: -100px; right: -100px; width: 500px; height: 500px; animation: pulse 4s ease-in-out infinite; }
+.gate-bg-orb-2 { bottom: -150px; left: -150px; width: 600px; height: 600px; animation: pulse 6s ease-in-out infinite 1s;
+  background: radial-gradient(circle, rgba(0,44,95,0.4) 0%, transparent 70%); }
+
+.gate-header {
+  padding: 24px 24px 0; display: flex; justify-content: space-between;
+  align-items: center; position: relative; z-index: 2; gap: 12px; flex-wrap: wrap;
+}
+.gate-content {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 20px 24px; position: relative; z-index: 2;
+}
+.gate-badge {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px;
+  border-radius: 30px; background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2);
+  margin-bottom: 24px; color: var(--h-electric); font-size: 13px; font-weight: 600; letter-spacing: 1px;
+}
+.gate-title {
+  font-size: clamp(32px, 6vw, 52px); font-weight: 800; color: var(--h-white);
+  line-height: 1.1; margin-bottom: 12px; letter-spacing: -1px;
+}
+.gate-subtitle {
+  font-size: 17px; color: rgba(255,255,255,0.7); max-width: 400px; margin: 0 auto; line-height: 1.5;
+}
+.gate-dates {
+  font-size: 14px; color: var(--h-accent); font-weight: 600; margin-top: 12px; letter-spacing: 1px;
+}
+
+/* Code Card */
+.code-card {
+  width: 100%; max-width: 420px; background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); padding: 32px;
+}
+.code-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.code-card-icon {
+  width: 40px; height: 40px; border-radius: 10px; background: rgba(0,229,255,0.15);
+  display: flex; align-items: center; justify-content: center; color: var(--h-electric);
+}
+.code-input {
+  width: 100%; padding: 16px 18px; border-radius: 12px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  font-size: 18px; font-weight: 600; color: var(--h-white); background: rgba(255,255,255,0.05);
+  letter-spacing: 3px; text-align: center; text-transform: uppercase;
+}
+.code-input::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 2px; font-weight: 400; }
+.code-input.error { border-color: var(--h-error); }
+
+/* Divider */
+.gate-divider {
+  display: flex; align-items: center; gap: 16px; margin: 32px 0; width: 100%; max-width: 420px;
+}
+.gate-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+.gate-divider-text { color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 500; }
+
+.gate-footer {
+  padding: 20px 24px; text-align: center; position: relative; z-index: 2;
+  color: rgba(255,255,255,0.3); font-size: 11px;
+}
+
+/* ── BUTTONS ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: 12px; border: none; cursor: pointer;
+  font-family: 'Noto Sans', sans-serif; font-size: 15px; font-weight: 600;
+  transition: all 0.3s ease; letter-spacing: 0.5px; text-decoration: none;
+}
+.btn:hover:not(:disabled) { transform: translateY(-2px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--h-accent), var(--h-primary));
+  color: var(--h-white); box-shadow: 0 4px 20px rgba(0,170,210,0.3);
+}
+.btn-secondary {
+  background: transparent; color: var(--h-primary); border: 2px solid var(--h-primary);
+}
+.btn-ghost {
+  background: rgba(255,255,255,0.1); color: var(--h-white);
+  border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+}
+.btn-accent {
+  background: var(--h-accent); color: var(--h-white); box-shadow: 0 4px 20px rgba(0,170,210,0.4);
+}
+.btn-glow { animation: electricGlow 2s ease-in-out infinite; }
+.btn-full { width: 100%; }
+
+/* ── BOOKING FLOW ────────────────────────────────────────────────────────── */
+.booking-screen {
+  min-height: 100vh; background: var(--h-off-white); display: flex; flex-direction: column;
+}
+
+/* Header Bar */
+.booking-header {
+  background: var(--h-primary); padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.conquest-badge {
+  padding: 4px 12px; border-radius: 20px;
+  background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.25);
+  color: var(--h-electric); font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+}
+
+/* Step Indicator */
+.step-indicator {
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px 12px; background: var(--h-white);
+  border-bottom: 1px solid var(--h-light-grey);
+  position: sticky; top: 0; z-index: 10;
+}
+.step-item { display: flex; align-items: center; }
+.step-dot-wrap { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
+.step-dot {
+  width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; transition: all 0.4s ease; color: var(--h-mid-grey); background: var(--h-light-grey);
+}
+.step-dot.active { background: var(--h-accent); color: var(--h-white); box-shadow: 0 0 0 4px var(--h-electric-dim); }
+.step-dot.done { background: var(--h-success); color: var(--h-white); }
+.step-label {
+  font-size: 9px; font-weight: 600; margin-top: 4px; letter-spacing: 0.3px;
+  text-align: center; max-width: 58px; line-height: 1.2; color: var(--h-mid-grey);
+}
+.step-label.active-label { color: var(--h-primary); }
+.step-line {
+  width: 24px; height: 2px; margin: 0 2px; background: var(--h-light-grey);
+  transition: all 0.4s ease; margin-bottom: 18px;
+}
+.step-line.done { background: var(--h-success); }
+
+/* Content Area */
+.booking-content {
+  flex: 1; overflow: auto; padding: 24px 20px 120px;
+  max-width: 640px; width: 100%; margin: 0 auto;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 20;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-top: 1px solid var(--h-light-grey);
+  padding: 14px 20px; padding-bottom: max(14px, env(safe-area-inset-bottom));
+  display: flex; gap: 12px; justify-content: space-between;
+}
+@media (min-width: 680px) {
+  .bottom-nav { max-width: 640px; left: 50%; transform: translateX(-50%); }
+}
+
+/* ── CARDS & SELECTIONS ──────────────────────────────────────────────────── */
+.section-title {
+  font-size: 18px; font-weight: 700; color: var(--h-primary); margin-bottom: 16px;
+}
+
+/* Vehicle Grid */
+.vehicle-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 12px;
+}
+.vehicle-card {
+  border-radius: 14px; overflow: hidden; cursor: pointer;
+  border: 1.5px solid var(--h-light-grey); background: var(--h-white);
+  transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.vehicle-card.selected {
+  border: 2.5px solid var(--h-accent); background: var(--h-electric-dim);
+  box-shadow: 0 4px 20px rgba(0,170,210,0.2);
+}
+.vehicle-thumb {
+  height: 100px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, rgba(0,44,95,0.06), rgba(0,170,210,0.06));
+}
+.vehicle-icon-circle {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--h-primary), var(--h-accent));
+  display: flex; align-items: center; justify-content: center; color: var(--h-white);
+}
+.vehicle-check {
+  position: absolute; top: 8px; right: 8px; width: 24px; height: 24px;
+  border-radius: 50%; background: var(--h-accent);
+  display: flex; align-items: center; justify-content: center; color: var(--h-white);
+}
+.vehicle-info { padding: 10px 12px; }
+.vehicle-name { font-size: 13px; font-weight: 700; color: var(--h-primary); }
+.vehicle-type { font-size: 11px; color: var(--h-accent); font-weight: 600; margin-top: 2px; }
+
+/* Selection Cards (branch, date, exec) */
+.select-card {
+  padding: 16px 18px; border-radius: 14px; cursor: pointer;
+  border: 1.5px solid var(--h-light-grey); background: var(--h-white);
+  transition: all 0.3s ease; display: flex; align-items: center; gap: 14px;
+}
+.select-card.selected {
+  border: 2.5px solid var(--h-accent); background: var(--h-electric-dim);
+}
+.select-card-icon {
+  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--h-light-grey); color: var(--h-mid-grey); transition: all 0.3s ease;
+}
+.select-card.selected .select-card-icon {
+  background: linear-gradient(135deg, var(--h-accent), var(--h-primary)); color: var(--h-white);
+}
+.select-card-title { font-size: 15px; font-weight: 700; color: var(--h-primary); }
+.select-card-sub { font-size: 12px; color: var(--h-mid-grey); margin-top: 2px; }
+
+/* Exec Grid */
+.exec-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px;
+  margin-bottom: 28px;
+}
+.exec-card {
+  padding: 14px 12px; border-radius: 14px; cursor: pointer; text-align: center;
+  border: 1.5px solid var(--h-light-grey); background: var(--h-white); transition: all 0.3s ease;
+}
+.exec-card.selected { border: 2.5px solid var(--h-accent); background: var(--h-electric-dim); }
+.exec-avatar {
+  width: 48px; height: 48px; border-radius: 50%; margin: 0 auto 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--h-primary), var(--h-accent));
+  color: var(--h-white); font-size: 18px; font-weight: 700;
+}
+.exec-avatar.neutral { background: var(--h-light-grey); color: var(--h-mid-grey); }
+
+/* Time Grid */
+.time-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px;
+}
+.time-slot {
+  padding: 12px 8px; border-radius: 10px; text-align: center; cursor: pointer;
+  border: 1.5px solid var(--h-light-grey); background: var(--h-white);
+  transition: all 0.3s ease; font-size: 15px; font-weight: 700; color: var(--h-primary);
+}
+.time-slot.selected { border: 2.5px solid var(--h-accent); background: var(--h-electric-dim); color: var(--h-accent); }
+.time-slot.booked { opacity: 0.35; cursor: not-allowed; background: var(--h-light-grey); color: var(--h-mid-grey); }
+.time-slot-label { font-size: 10px; color: var(--h-mid-grey); margin-top: 2px; font-weight: 500; }
+
+/* ── FORM ELEMENTS ───────────────────────────────────────────────────────── */
+.form-card {
+  padding: 24px; border-radius: 16px; background: var(--h-white);
+  border: 1px solid var(--h-light-grey);
+}
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600;
+  color: var(--h-dark-grey); letter-spacing: 0.3px;
+}
+.form-input-wrap { position: relative; }
+.form-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--h-mid-grey); display: flex; pointer-events: none;
+}
+.form-input {
+  width: 100%; padding: 14px 16px; border-radius: 10px;
+  border: 1.5px solid var(--h-light-grey); font-size: 15px; color: var(--h-text);
+  background: var(--h-white);
+}
+.form-input.has-icon { padding-left: 44px; }
+.form-input.error { border-color: var(--h-error); }
+.form-input::placeholder { color: var(--h-mid-grey); }
+.form-error { font-size: 12px; color: var(--h-error); margin-top: 4px; }
+textarea.form-input { resize: vertical; min-height: 80px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+/* Part Exchange Toggle */
+.partex-toggle { display: flex; gap: 12px; margin-bottom: 24px; }
+.partex-option {
+  flex: 1; padding: 14px 16px; border-radius: 12px; cursor: pointer; text-align: center;
+  border: 1.5px solid var(--h-light-grey); background: var(--h-white);
+  transition: all 0.3s ease; font-size: 14px; font-weight: 600; color: var(--h-dark-grey);
+}
+.partex-option.selected { border: 2.5px solid var(--h-accent); background: var(--h-electric-dim); color: var(--h-accent); }
+
+.partex-card {
+  padding: 24px; border-radius: 16px; background: var(--h-white); border: 1px solid var(--h-light-grey);
+}
+.partex-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.partex-card-icon {
+  width: 36px; height: 36px; border-radius: 8px; background: var(--h-electric-dim);
+  display: flex; align-items: center; justify-content: center; color: var(--h-accent);
+}
+
+/* ── REVIEW ──────────────────────────────────────────────────────────────── */
+.review-card {
+  border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--h-light-grey); background: var(--h-white);
+}
+.review-accent { height: 4px; background: linear-gradient(90deg, var(--h-accent), var(--h-primary)); }
+.review-body { padding: 24px; }
+.review-row {
+  display: flex; align-items: center; gap: 14px; padding: 13px 0;
+  border-bottom: 1px solid var(--h-light-grey);
+}
+.review-row:last-child { border-bottom: none; }
+.review-icon { color: var(--h-accent); display: flex; min-width: 20px; }
+.review-label { font-size: 11px; color: var(--h-mid-grey); font-weight: 600; letter-spacing: 0.3px; }
+.review-value { font-size: 15px; color: var(--h-primary); font-weight: 600; }
+
+.review-partex {
+  margin-top: 16px; padding: 16px; border-radius: 12px;
+  background: var(--h-electric-dim); border: 1px solid rgba(0,170,210,0.15);
+}
+
+/* ── CONFIRMATION ────────────────────────────────────────────────────────── */
+.confirm-screen {
+  min-height: 100vh;
+  background: linear-gradient(165deg, var(--h-primary) 0%, #001A3A 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 24px; position: relative; overflow: hidden;
+}
+.confirm-icon {
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 24px;
+  background: linear-gradient(135deg, var(--h-success), #00D68F);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,168,120,0.4); animation: electricGlow 2s ease-in-out infinite;
+}
+.confirm-ref {
+  padding: 16px 24px; border-radius: 14px;
+  background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); margin-bottom: 28px;
+}
+.confirm-ref-label {
+  color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 600; letter-spacing: 1px; margin-bottom: 4px;
+}
+.confirm-ref-code {
+  color: var(--h-electric); font-size: 24px; font-weight: 800; letter-spacing: 4px; font-family: monospace;
+}
+.confirm-summary {
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+  border-radius: 18px; border: 1px solid rgba(255,255,255,0.1);
+  padding: 24px; text-align: left; margin-bottom: 28px; width: 100%; max-width: 480px;
+}
+.confirm-row {
+  display: flex; align-items: center; gap: 14px; padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.confirm-row:last-child { border-bottom: none; }
+.confirm-row-icon { color: var(--h-accent); display: flex; }
+.confirm-row-label { color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+.confirm-row-value { color: var(--h-white); font-size: 15px; font-weight: 600; }
+
+/* Spinner */
+.spinner {
+  width: 20px; height: 20px; border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: var(--h-white); border-radius: 50%; animation: spin 0.6s linear infinite;
+  display: inline-block; vertical-align: middle;
+}
+
+/* ── SVG ICONS ───────────────────────────────────────────────────────────── */
+.icon { display: inline-flex; vertical-align: middle; }
+
+/* ── READ MOTOR GROUP LOGO ───────────────────────────────────────────────── */
+.rmg-logo { display: flex; align-items: center; gap: 8px; }
+.rmg-logo-icon {
+  width: 28px; height: 28px; border-radius: 6px; background: var(--h-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14px; color: var(--h-white);
+}
+.rmg-logo-text {
+  font-weight: 600; font-size: 13px; color: var(--h-white);
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+
+/* Real logo responsive sizing */
+.rmg-real-logo {
+  height: 20px !important; width: auto !important;
+}
+@media (max-width: 480px) {
+  .rmg-real-logo { height: 16px !important; }
+}
+
+/* ── LOADING OVERLAY ─────────────────────────────────────────────────────── */
+.loading-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,44,95,0.85); backdrop-filter: blur(8px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: var(--h-white);
+}
+
+/* ── HIDDEN ──────────────────────────────────────────────────────────────── */
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SVG ICON DEFINITIONS                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ico-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+  </symbol>
+  <symbol id="ico-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </symbol>
+  <symbol id="ico-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+  </symbol>
+  <symbol id="ico-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 17h14M5 17a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-3h8l2 3h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M5 17a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/>
+  </symbol>
+  <symbol id="ico-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+  </symbol>
+  <symbol id="ico-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.36 1.74.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.34 1.93.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </symbol>
+  <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  <symbol id="ico-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="9 18 15 12 9 6"/>
+  </symbol>
+  <symbol id="ico-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 18 9 12 15 6"/>
+  </symbol>
+  <symbol id="ico-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+  </symbol>
+  <symbol id="ico-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+  <symbol id="ico-exchange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+  </symbol>
+  <symbol id="ico-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+  </symbol>
+  <symbol id="ico-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </symbol>
+</svg>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- APP ROOT                                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div id="app"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// HYUNDAI DRIVE ELECTRIC — VANILLA JS APPLICATION
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── CONFIGURATION ───────────────────────────────────────────────────────────
+const CONFIG = {
+  // ⚡ UPDATE THESE with your Google Apps Script Web App URL
+  SCRIPT_URL: "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID_HERE/exec",
+  
+  EVENT_NAME: "Drive Electric",
+  EVENT_VENUE: "Read Motor Group",
+  EVENT_DATES: "5th – 8th June 2026",
+  EVENT_TAGLINE: "Experience the future of electric driving",
+  BRANCHES: ["Read Hyundai Kings Lynn", "Read Hyundai Boston", "Read Hyundai Lincoln", "Read Hyundai Worksop", "Read Hyundai Burton"],
+  
+  // Set to false once Google Sheets backend is connected
+  DEMO_MODE: true,
+};
+
+// ─── DEMO DATA ───────────────────────────────────────────────────────────────
+const DEMO_DATA = {
+  dates: [
+    { date: "2026-06-05", label: "Friday 5th June" },
+    { date: "2026-06-06", label: "Saturday 6th June" },
+    { date: "2026-06-07", label: "Sunday 7th June" },
+    { date: "2026-06-08", label: "Monday 8th June" },
+  ],
+  timeSlots: [
+    "09:00", "10:30", "12:00", "13:30", "15:00", "16:30",
+  ],
+  salesExecs: [
+    { id: "se1", name: "Sales Exec 1", branch: "Read Hyundai Kings Lynn" },
+    { id: "se2", name: "Sales Exec 2", branch: "Read Hyundai Kings Lynn" },
+    { id: "se3", name: "Sales Exec 3", branch: "Read Hyundai Boston" },
+    { id: "se4", name: "Sales Exec 4", branch: "Read Hyundai Boston" },
+    { id: "se5", name: "Sales Exec 5", branch: "Read Hyundai Lincoln" },
+    { id: "se6", name: "Sales Exec 6", branch: "Read Hyundai Lincoln" },
+    { id: "se7", name: "Sales Exec 7", branch: "Read Hyundai Worksop" },
+    { id: "se8", name: "Sales Exec 8", branch: "Read Hyundai Worksop" },
+    { id: "se9", name: "Sales Exec 9", branch: "Read Hyundai Burton" },
+    { id: "se10", name: "Sales Exec 10", branch: "Read Hyundai Burton" },
+  ],
+  bookedSlots: [
+    { date: "2026-06-05", time: "10:30", execId: "se1" },
+    { date: "2026-06-06", time: "12:00", execId: "se3" },
+  ],
+};
+
+// ═══════════════════════════════════════════════════════════════════════
+// VEHICLE IMAGES: Replace the "img" URLs below with your own image URLs
+// Upload images to GitHub (same repo) or use any public image URL
+// Recommended size: 400x250px, landscape orientation
+// To add an image: put the file in your GitHub repo's /images/ folder
+// then use: "images/ioniq5.jpg" as the URL
+// ═══════════════════════════════════════════════════════════════════════
+const VEHICLES = [
+  { id: "inster", name: "INSTER", type: "Electric", img: "" },
+  { id: "kona_ev", name: "KONA EV", type: "Electric", img: "" },
+  { id: "ioniq5", name: "IONIQ 5", type: "Electric", img: "" },
+  { id: "ioniq5n", name: "IONIQ 5 N", type: "Electric Performance", img: "" },
+  { id: "ioniq6", name: "IONIQ 6", type: "Electric", img: "" },
+  { id: "ioniq6n", name: "IONIQ 6 N", type: "Electric Performance", img: "" },
+  { id: "ioniq9", name: "IONIQ 9", type: "Electric", img: "" },
+  { id: "tucson_phev", name: "TUCSON Plug-in Hybrid", type: "PHEV", img: "" },
+  { id: "santa_fe_phev", name: "SANTA FE Plug-in Hybrid", type: "PHEV", img: "" },
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+const state = {
+  screen: "gate", // gate | booking | confirmation
+  accessMode: null, // code | conquest
+  bookingCode: "",
+  step: 0,
+  availability: null,
+  // Selections
+  vehicle: "",
+  branch: "",
+  date: "",
+  time: "",
+  exec: "",
+  // Customer details
+  title: "",
+  firstName: "",
+  surname: "",
+  email: "",
+  phone: "",
+  // Part exchange
+  wantsPartEx: null,
+  px: { registration: "", mileage: "", make: "", model: "", year: "", colour: "", notes: "" },
+  // Result
+  bookingRef: "",
+  errors: {},
+  loading: false,
+};
+
+const STEPS = ["Vehicle", "Branch", "Date & Time", "Your Details", "Part Exchange", "Review"];
+
+// ─── UTILITY FUNCTIONS ───────────────────────────────────────────────────────
+function icon(name, size = 20) {
+  return `<svg class="icon" width="${size}" height="${size}"><use href="#ico-${name}"/></svg>`;
+}
+
+function hyundaiLogo(size = 40, color = "#FFFFFF") {
+  return '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAC4CAYAAABZ/dGUAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAALhgAAC4YASqqJyAAAAAHdElNRQfqBAEKFg1ZiR9dAAAJAElEQVR42u3d2Y7bSBBE0dSg//+X6Qe73bKGEsliLRGZ9wCDAQy7u5asUJLaHtu2BfBEuSAeqweAtb5WDwBTKYdRr/ETaokRWDm5B9OIuRNkCRBY/iqH0xV760SImSGwvBBOfRFiZggsbQTUfK9rToAJIbD0EFJanveD8FqMwNJASHmg+1qMwFqDgMqB7msyAmuu7EHV+9A6rdf3WAmugQis8ZwOXYuRB/Tsz1ZaY7qugQiscZQO0QhKh/HTWFbuA+HVGYHV1+qQekwag9Ph2xvrin3ikrGDB29+7mLFIq7qKrIeuNl7mHUdh6LDumdmkSvcz8l8yF7nNnpv6bgaEFhtKl52qY1n9nxH7TnBdQGBdc3ooLpbtKPGx2H6dw1GrDPBdQKBdY5DEHAzcp6RT24QXB8QWJ85BNXIcY4YK84huHYQWO/1DoFRhUdnldsWhNZfBNb/9QwA90JzH/8IvIZrof9WD0BMr2J8xJzioruaa/V6r/79y9Fh/dYzqNzGrDAXByphUbrbIrD6FOLs4lE5PBWornXJe1vVLwnvFuOsS7/ZMs6phWpYuYyvu8od1p3NXnmgyxXpAk5rXKrTqhhYrkF1d+w4Z+Ub2Vt/d5n7WtUuCZ3DapYq83y1xfoHhLu3GFaPf7hKHVbrZqoc4PTFuMjqdX18+LOWsaW+RKzSYRFWXvOdQaGjOtK6H+rzalYhsNzDCv2pHOgzNUZoPcl+SdiyaWpBlbLwFnFdy9ZLxHSXh9kD6yq1zVX8RFM3qiHVst6zPrNfVuZLwqsbm/XAVuVwj6rF1TpNtQZZAytDWKUqtIkcgupuvZUNrYyBRVjV5BBUPZUMrer3sBTDCuelOIQ3lLunla3DurJ5qmFVqgAbOXdTvevuys9zXbO/MgVWhrDCe1t4B9VIZUKr+iWhGutiGiTTmvBAeVOWDitDd5XpYN5FN3VdiS6rWoelGlYwPkQnzai99DfhM3RYGTZIYQ6rvg2GTmoNyzWv1GHRXWmwPCg3zay91F1WpcBSpVRco94sqzRHGHtsm3UtnR28anelvPh88mUfq2rP/WzsosPCO88F/zjxd4DhCKx1nA6701iVWHUvDjI8S3iEokFFKeveObCcH/Wdx45zXALDqhadAwtAMQTWfFaPaGji0l3ZIbAA2CCw5qK7yo/uaiACC4ANAmseuqv86K4GI7AA2CCw5qC7yo/uagLnwKJAgGKcA8sF3VV+zg+eVmOvEFgEBkZSPfAp655PaxgrZdF0UOILE9AfgYUZ7nQhz/9WLbxUu6u03C8JzxbMqi9YqOrx8l/Pn4tjKT9tNIIOC/3MKn6VL1mwO+wZuHdYEZpdlsKBmmFEF4V7UtdetQ5r1LfCVML65VgDyzlk6LAitBY/4yOcWielMg41GWvvH9U6rAi6rLNYo32q63IlrFTncChLhxWh8dqeDI9wSp2UGtV1KRFWETU7rG90Wj9YB1jI1GFFrD14jt0V3dR5qutUpruKyBdYERqXhsrUbqA7UF2rcvWbMbCu6rHpDoWTKaQc1nu0q2uQYu+zBtbVzcl8ADIF1QqKa1cyrCJy33S/+haO7enfZZBlHvjR8sCaqg6ydljfWjbralGodWd0VP0orWP5sIrIH1gRc0JLQZWgmrU3SmtJWP1RIbAi2kPrqFAUgq1KUFVFWD2pElgR7ZuoEErv5pO2MBdTWNczD5iqYx+mUmBF3AutbefP3ObhbsaaK6xt6zwVxj5U5mcJ37nzAXCru630BVncnfoqURsVAytC51Mrr4y3uszd1d25lamPapeEz1w22WWc7lasc+t9qtXjXqZqh/Xte7MVu61ShXhg9P7MXuse8ylZH5U7rGdqm682HvTRo6OKKFwfBNYPlSJQGUcVM9a7V1DNGq+s6peEr1ZeIpYuxA9G7sXoNe85duojCKx3Zj+LSDHucwyrEWOmPv4gsN5TviEPLaNqhKB6QWAdI7jWUO+u1MeXEoF13sjgev6ZFOtYd9Y328sr7BBY143uuAgvrUuszK+wt0NgtZtxqfj6sysU9uqw4skWYQTWfTPvce39jkxFP/s+4ar7kpn2bKrHtnEvuTOFBXU8EArrNprjvkihw+pP4VnFd79b8cAQVDiNwBrnuUhVDuXROGYeLJU1GYWQGoDAmkMxvPaM/KgT5Xn3QkgNRmDN5xJeLbLN5wxCaiICa63M4ZUZIbUIgaWD8NJGSAkgsDS9Hg4CbD4CShCB5YEAG4+AMkBgedo7XITYeYSTKQIrD0JsH+GUCIGVW5XXRRFKRRBYdSl+ekHrGFEEgYUjhAZk8DVfAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGwQWABsEFgAbBBYAGx8RcR24e8/Ov3e1t955d/1HnPr+O/OY/Wa91yDEe6sT4Y5ZJjb6bFW6LB6b5xKaOK3LXQOp8IcMqzHW26BxcHHOxkO6p05ZJj/IbfAimgLrZ6PXjPGi3bpD23lOTsGVqu7m1qmKLActfaGa2C5dC0u48wmw4E/O4cMcz3NNbAi5l4acikICHAOrFlKPYIBytwDa+UN+N7jAnDAPbAixoYWl4KAkK/VA0AZd4Nc4dKcOSyeQ4YOK2JMl0V31U+PdVm9tsxBYA5ZAqvVdvHPASyUKbAyPHoB+CBTYEX0uTTkUhAQlS2wWm0v/wcgKGNgze526K6ASa6+rMGlA3k0jJVLQUBcxg4LQFKZA2t090N3BUyWObBGIqyABbK/NaflXhaQlf1ZqNBh9e6G6K6ARSoEFoAkqgRWr66I7gpYqEpgRdwPG8IKWKxSYAEwd/VZwhVfm95T67OGdFeAADqsY4QVIKJiYBFAgKmKgQXAVPZXugP44X4Pmg4LgA8CC4ANLgn12b9hNQn2QQAdFgAbBBYAGwQWABsEFgAbBBagiXdk7CCw8IqDAlkEFp4RVhrYhzcILHzjkGhgHz4gsBDBIVHBPhz4BWgRZwQhqfC3AAAAAElFTkSuQmCC" alt="Hyundai" style="height:' + size + 'px;width:auto;display:block;">';
+}
+
+function rmgLogo() {
+  return '<img src="data:image/png;base64,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" alt="Read Motor Group" style="height:22px;width:auto;display:block;">';
+}
+
+function getExecInitials(name) {
+  return name.split(" ").map(n => n[0]).join("");
+}
+
+function fullName() {
+  return state.title + " " + state.firstName + " " + state.surname;
+}
+
+function getTimeGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  if (hour < 17) return "Good Afternoon";
+  return "Good Evening";
+}
+
+function generateRef() {
+  return "HDE-" + Date.now().toString(36).toUpperCase().slice(-6);
+}
+
+// ─── API FUNCTIONS ───────────────────────────────────────────────────────────
+async function fetchAvailability() {
+  if (CONFIG.DEMO_MODE) return DEMO_DATA;
+  try {
+    const res = await fetch(CONFIG.SCRIPT_URL + "?action=getAvailability");
+    const data = await res.json();
+    return data.success ? data : DEMO_DATA;
+  } catch { return DEMO_DATA; }
+}
+
+async function verifyCode(code) {
+  if (CONFIG.DEMO_MODE) {
+    // Demo: simulate a returning customer with pre-filled data
+    if (code.length >= 4) {
+      return {
+        valid: true,
+        title: "Mr",
+        firstName: "John",
+        surname: "Smith",
+        email: "john.smith@example.com",
+        phone: "07700 900001"
+      };
+    }
+    return { valid: false, message: "Invalid booking code." };
+  }
+  try {
+    const res = await fetch(CONFIG.SCRIPT_URL + "?action=verifyCode&code=" + encodeURIComponent(code));
+    return await res.json();
+  } catch { return { valid: code.length >= 4 }; }
+}
+
+async function submitBooking(data) {
+  if (CONFIG.DEMO_MODE) {
+    await new Promise(r => setTimeout(r, 1200));
+    return { success: true, bookingRef: data.bookingRef };
+  }
+  try {
+    const res = await fetch(CONFIG.SCRIPT_URL + "?action=submitBooking", {
+      method: "POST", headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify(data),
+    });
+    return await res.json();
+  } catch { return { success: true, bookingRef: data.bookingRef }; }
+}
+
+// ─── RENDER ENGINE ───────────────────────────────────────────────────────────
+const app = document.getElementById("app");
+
+function render() {
+  switch (state.screen) {
+    case "gate": renderGate(); break;
+    case "booking": renderBooking(); break;
+    case "confirmation": renderConfirmation(); break;
+  }
+}
+
+// ─── GATE SCREEN ─────────────────────────────────────────────────────────────
+function renderGate() {
+  app.innerHTML = `
+    <div class="gate-screen">
+      <div class="gate-bg-orb gate-bg-orb-1"></div>
+      <div class="gate-bg-orb gate-bg-orb-2"></div>
+
+      <div class="gate-header">
+        ${hyundaiLogo()}
+        ${rmgLogo()}
+      </div>
+
+      <div class="gate-content">
+        <div class="animate-in" style="text-align:center;margin-bottom:48px">
+          <div class="gate-badge">${icon("zap")} EXCLUSIVE EVENT</div>
+          <h1 class="gate-title">Drive Electric</h1>
+          <p class="gate-subtitle">${CONFIG.EVENT_TAGLINE}</p>
+          <p class="gate-dates">${CONFIG.EVENT_DATES}</p>
+        </div>
+
+        <div class="code-card animate-in animate-delay-2">
+          <div class="code-card-header">
+            <div class="code-card-icon">${icon("lock")}</div>
+            <div>
+              <h3 style="color:var(--h-white);font-size:16px;font-weight:700">Enter Booking Code</h3>
+              <p style="color:rgba(255,255,255,0.5);font-size:12px">From your invitation email</p>
+            </div>
+          </div>
+          <div style="margin-bottom:16px">
+            <input type="text" id="gate-code" class="code-input" placeholder="e.g. HDE-2026-XXXX" value="${state.bookingCode}">
+            <p id="gate-error" class="form-error" style="text-align:center;margin-top:8px;color:var(--h-error);display:none"></p>
+          </div>
+          <button class="btn btn-primary btn-full" id="btn-verify" style="padding:16px 28px">
+            ${icon("chevron-right")} Access Event Portal
+          </button>
+        </div>
+
+        <div class="gate-divider animate-in animate-delay-3">
+          <div class="gate-divider-line"></div>
+          <span class="gate-divider-text">or</span>
+          <div class="gate-divider-line"></div>
+        </div>
+
+        <div class="animate-in animate-delay-4" style="width:100%;max-width:420px;text-align:center">
+          <button class="btn btn-ghost btn-full" id="btn-conquest">
+            ${icon("globe")} Book Without a Code
+          </button>
+          <p style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:12px;line-height:1.5">
+            New to Hyundai? Book your electric experience here
+          </p>
+        </div>
+      </div>
+
+      <div class="gate-footer">© 2026 Read Motor Group. Authorised Hyundai Dealer.</div>
+    </div>
+  `;
+
+  // Events
+  const codeInput = document.getElementById("gate-code");
+  codeInput.addEventListener("input", (e) => {
+    state.bookingCode = e.target.value.toUpperCase();
+    e.target.value = state.bookingCode;
+  });
+  codeInput.addEventListener("keydown", (e) => { if (e.key === "Enter") handleVerify(); });
+  document.getElementById("btn-verify").addEventListener("click", handleVerify);
+  document.getElementById("btn-conquest").addEventListener("click", () => {
+    state.accessMode = "conquest";
+    state.screen = "booking";
+    loadAvailability();
+  });
+
+  // Auto-conquest via URL param
+  if (new URLSearchParams(window.location.search).get("mode") === "conquest") {
+    state.accessMode = "conquest";
+    state.screen = "booking";
+    loadAvailability();
+  }
+}
+
+async function handleVerify() {
+  const code = state.bookingCode.trim();
+  const errEl = document.getElementById("gate-error");
+  const btn = document.getElementById("btn-verify");
+  if (!code) { errEl.textContent = "Please enter your booking code"; errEl.style.display = "block"; return; }
+  btn.innerHTML = '<span class="spinner"></span> Verifying...';
+  btn.disabled = true;
+  const result = await verifyCode(code);
+  if (result.valid) {
+    state.accessMode = "code";
+    state.screen = "booking";
+    // Pre-fill customer data from booking code record
+    if (result.title) state.title = result.title;
+    if (result.firstName) state.firstName = result.firstName;
+    if (result.surname) state.surname = result.surname;
+    if (result.email) state.email = result.email;
+    if (result.phone) state.phone = result.phone;
+    loadAvailability();
+  } else {
+    errEl.textContent = result.message || "Invalid booking code. Please try again.";
+    errEl.style.display = "block";
+    document.getElementById("gate-code").classList.add("error");
+    btn.innerHTML = `${icon("chevron-right")} Access Event Portal`;
+    btn.disabled = false;
+  }
+}
+
+async function loadAvailability() {
+  state.availability = await fetchAvailability();
+  state._fullRedraw = true;
+  render();
+}
+
+// ─── BOOKING SCREEN ──────────────────────────────────────────────────────────
+function renderBooking() {
+  const avail = state.availability || DEMO_DATA;
+  
+  // If we're just updating content within a step, only replace the content area
+  const existingContent = document.getElementById("booking-content");
+  if (existingContent && !state._fullRedraw) {
+    const scrollPos = existingContent.scrollTop;
+    existingContent.innerHTML = renderCurrentStep(avail);
+    bindStepEvents(avail);
+    existingContent.scrollTop = scrollPos;
+    return;
+  }
+  state._fullRedraw = false;
+  
+  app.innerHTML = `
+    <div class="booking-screen">
+      <div class="booking-header">
+        ${hyundaiLogo(28)}
+        ${state.accessMode === "conquest" ? '<span class="conquest-badge">NEW CUSTOMER</span>' : ''}
+      </div>
+
+      ${renderStepIndicator()}
+
+      <div class="booking-content" id="booking-content">
+        ${renderCurrentStep(avail)}
+      </div>
+
+      <div class="bottom-nav">
+        ${state.step > 0
+          ? `<button class="btn btn-secondary" id="btn-back" style="padding:14px 20px">${icon("chevron-left")} Back</button>`
+          : '<div></div>'}
+        ${state.step < STEPS.length - 1
+          ? `<button class="btn btn-primary" id="btn-next" style="padding:14px 28px">Continue ${icon("chevron-right")}</button>`
+          : `<button class="btn btn-accent ${state.loading ? '' : 'btn-glow'}" id="btn-submit" style="padding:14px 28px" ${state.loading ? 'disabled' : ''}>
+              ${state.loading ? '<span class="spinner"></span> Booking...' : icon("check") + ' Confirm Booking'}
+            </button>`}
+      </div>
+    </div>
+  `;
+
+  // Events
+  if (document.getElementById("btn-back"))
+    document.getElementById("btn-back").addEventListener("click", () => { state.step--; state._fullRedraw = true; render(); window.scrollTo(0, 0); });
+  if (document.getElementById("btn-next"))
+    document.getElementById("btn-next").addEventListener("click", handleNext);
+  if (document.getElementById("btn-submit"))
+    document.getElementById("btn-submit").addEventListener("click", handleSubmit);
+
+  bindStepEvents(avail);
+}
+
+function renderStepIndicator() {
+  return `<div class="step-indicator">
+    ${STEPS.map((s, i) => `
+      <div class="step-item">
+        <div class="step-dot-wrap">
+          <div class="step-dot ${i < state.step ? 'done' : i === state.step ? 'active' : ''}">
+            ${i < state.step ? icon("check", 16) : i + 1}
+          </div>
+          <span class="step-label ${i <= state.step ? 'active-label' : ''}">${s}</span>
+        </div>
+        ${i < STEPS.length - 1 ? `<div class="step-line ${i < state.step ? 'done' : ''}"></div>` : ''}
+      </div>
+    `).join("")}
+  </div>`;
+}
+
+function renderCurrentStep(avail) {
+  switch (state.step) {
+    case 0: return renderVehicleStep();
+    case 1: return renderBranchStep();
+    case 2: return renderDateTimeStep(avail);
+    case 3: return renderDetailsStep();
+    case 4: return renderPartExStep();
+    case 5: return renderReviewStep(avail);
+  }
+}
+
+// ── Step 0: Vehicle ──
+function renderVehicleStep() {
+  // Build welcome banner for customers who logged in with a code
+  let welcomeBanner = "";
+  if (state.accessMode === "code" && state.firstName) {
+    const greeting = getTimeGreeting();
+    const displayName = state.title
+      ? state.title + " " + state.surname
+      : state.firstName;
+    welcomeBanner = `
+      <div style="background:linear-gradient(135deg, var(--h-primary), #003D7A);border-radius:16px;padding:24px;margin-bottom:24px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(0,170,210,0.15)"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;border-radius:50%;background:rgba(0,229,255,0.1)"></div>
+        <div style="position:relative;z-index:1">
+          <p style="color:var(--h-accent);font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:6px">${greeting.toUpperCase()}</p>
+          <h2 style="color:var(--h-white);font-size:22px;font-weight:800;margin-bottom:6px">${greeting}, ${displayName}</h2>
+          <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.5;margin:0">Welcome to the Hyundai Drive Electric experience. Let's get your test drive booked.</p>
+        </div>
+      </div>`;
+  }
+
+  return `<div class="step-content">
+    ${welcomeBanner}
+    <h3 class="section-title">Which vehicle interests you?</h3>
+    <div class="vehicle-grid">
+      ${VEHICLES.map(v => `
+        <div class="vehicle-card ${state.vehicle === v.id ? 'selected' : ''}" data-vehicle="${v.id}">
+          <div class="vehicle-thumb">
+            ${v.img
+              ? '<img src="' + v.img + '" alt="' + v.name + '" style="width:100%;height:100%;object-fit:cover;">'
+              : '<div class="vehicle-icon-circle">' + icon("car") + '</div>'}
+            ${state.vehicle === v.id ? '<div class="vehicle-check">' + icon("check", 14) + '</div>' : ''}
+          </div>
+          <div class="vehicle-info">
+            <p class="vehicle-name">${v.name}</p>
+            <p class="vehicle-type">${v.type}</p>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+    <p id="step-error" class="form-error" style="margin-top:12px;display:none"></p>
+  </div>`;
+}
+
+// ── Step 1: Branch ──
+function renderBranchStep() {
+  return `<div class="step-content">
+    <h3 class="section-title">Select your preferred branch</h3>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      ${CONFIG.BRANCHES.map(b => `
+        <div class="select-card ${state.branch === b ? 'selected' : ''}" data-branch="${b}">
+          <div class="select-card-icon">${icon("map-pin")}</div>
+          <div style="flex:1">
+            <p class="select-card-title">${b}</p>
+          </div>
+          ${state.branch === b ? `<div style="color:var(--h-accent)">${icon("check")}</div>` : ''}
+        </div>
+      `).join("")}
+    </div>
+    <p id="step-error" class="form-error" style="margin-top:12px;display:none"></p>
+  </div>`;
+}
+
+// ── Step 2: Date & Time ──
+function renderDateTimeStep(avail) {
+  const filteredExecs = avail.salesExecs.filter(e => !state.branch || e.branch === state.branch);
+  
+  let html = `<div class="step-content">
+    <h3 class="section-title">Choose your date</h3>
+    <div style="display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap">
+      ${avail.dates.map(d => `
+        <div class="select-card ${state.date === d.date ? 'selected' : ''}" data-date="${d.date}" style="flex:1 1 calc(50% - 6px);min-width:140px;justify-content:center">
+          <span>${icon("calendar")} <strong>${d.label}</strong></span>
+        </div>
+      `).join("")}
+    </div>`;
+
+  if (state.date) {
+    html += `<h3 class="section-title">Choose your sales executive</h3>
+    <div class="exec-grid">
+      ${filteredExecs.map(e => `
+        <div class="exec-card ${state.exec === e.id ? 'selected' : ''}" data-exec="${e.id}">
+          <div class="exec-avatar">${getExecInitials(e.name)}</div>
+          <p class="vehicle-name">${e.name}</p>
+          <p class="vehicle-type">${e.branch.replace("Read Hyundai ", "")}</p>
+        </div>
+      `).join("")}
+      <div class="exec-card ${state.exec === 'any' ? 'selected' : ''}" data-exec="any">
+        <div class="exec-avatar neutral">${icon("user")}</div>
+        <p class="vehicle-name">No Preference</p>
+        <p class="vehicle-type">Next available</p>
+      </div>
+    </div>`;
+  }
+
+  if (state.date && state.exec) {
+    html += `<h3 class="section-title">Choose your time</h3>
+    <div class="time-grid">
+      ${avail.timeSlots.map(t => {
+        const booked = state.exec !== "any"
+          ? avail.bookedSlots.some(s => s.date === state.date && s.time === t && s.execId === state.exec)
+          : filteredExecs.every(e => avail.bookedSlots.some(s => s.date === state.date && s.time === t && s.execId === e.id));
+        return `<div class="time-slot ${state.time === t ? 'selected' : ''} ${booked ? 'booked' : ''}" data-time="${t}" ${booked ? 'data-booked="true"' : ''}>
+          ${t}
+          ${booked ? '<div class="time-slot-label">Booked</div>' : ''}
+        </div>`;
+      }).join("")}
+    </div>`;
+  }
+
+  html += `<p id="step-error" class="form-error" style="margin-top:12px;display:none"></p></div>`;
+  return html;
+}
+
+// ── Step 3: Details ──
+function renderDetailsStep() {
+  return `<div class="step-content">
+    <h3 class="section-title">Your details</h3>
+    <div class="form-card">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <div class="form-input-wrap">
+          <select class="form-input" id="f-title" style="appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23394553' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 16px center;">
+            <option value="" ${!state.title ? 'selected' : ''}>Select title</option>
+            <option value="Mr" ${state.title === 'Mr' ? 'selected' : ''}>Mr</option>
+            <option value="Mrs" ${state.title === 'Mrs' ? 'selected' : ''}>Mrs</option>
+            <option value="Miss" ${state.title === 'Miss' ? 'selected' : ''}>Miss</option>
+            <option value="Ms" ${state.title === 'Ms' ? 'selected' : ''}>Ms</option>
+            <option value="Dr" ${state.title === 'Dr' ? 'selected' : ''}>Dr</option>
+          </select>
+        </div>
+        <p class="form-error" id="err-title" style="display:none"></p>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <div class="form-input-wrap">
+            <input type="text" class="form-input" id="f-firstName" placeholder="John" value="${state.firstName}">
+          </div>
+          <p class="form-error" id="err-firstName" style="display:none"></p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Surname</label>
+          <div class="form-input-wrap">
+            <input type="text" class="form-input" id="f-surname" placeholder="Smith" value="${state.surname}">
+          </div>
+          <p class="form-error" id="err-surname" style="display:none"></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <div class="form-input-wrap">
+          <span class="form-icon">${icon("mail")}</span>
+          <input type="email" class="form-input has-icon" id="f-email" placeholder="john@example.com" value="${state.email}">
+        </div>
+        <p class="form-error" id="err-email" style="display:none"></p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <div class="form-input-wrap">
+          <span class="form-icon">${icon("phone")}</span>
+          <input type="tel" class="form-input has-icon" id="f-phone" placeholder="07700 900000" value="${state.phone}">
+        </div>
+        <p class="form-error" id="err-phone" style="display:none"></p>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Step 4: Part Exchange ──
+function renderPartExStep() {
+  let html = `<div class="step-content">
+    <h3 class="section-title">Part Exchange</h3>
+    <p style="color:var(--h-mid-grey);font-size:14px;margin-bottom:20px;line-height:1.5">
+      Have a vehicle to trade in? Provide your details and we'll have a valuation ready for you on arrival.
+    </p>
+    <div class="partex-toggle">
+      <div class="partex-option ${state.wantsPartEx === true ? 'selected' : ''}" data-partex="yes">Yes, I have a part exchange</div>
+      <div class="partex-option ${state.wantsPartEx === false ? 'selected' : ''}" data-partex="no">No, thanks</div>
+    </div>`;
+
+  if (state.wantsPartEx) {
+    html += `<div class="partex-card animate-in">
+      <div class="partex-card-header">
+        <div class="partex-card-icon">${icon("exchange")}</div>
+        <span style="font-size:15px;font-weight:700;color:var(--h-primary)">Your Current Vehicle</span>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Registration</label>
+          <input type="text" class="form-input" id="px-reg" placeholder="e.g. AB12 CDE" value="${state.px.registration}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mileage</label>
+          <input type="text" class="form-input" id="px-miles" placeholder="e.g. 35,000" value="${state.px.mileage}">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Make</label>
+          <input type="text" class="form-input" id="px-make" placeholder="e.g. Ford" value="${state.px.make}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Model</label>
+          <input type="text" class="form-input" id="px-model" placeholder="e.g. Focus" value="${state.px.model}">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Year</label>
+          <input type="text" class="form-input" id="px-year" placeholder="e.g. 2020" value="${state.px.year}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Colour</label>
+          <input type="text" class="form-input" id="px-colour" placeholder="e.g. Blue" value="${state.px.colour}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Condition / Notes</label>
+        <textarea class="form-input" id="px-notes" placeholder="Any additional details about your vehicle...">${state.px.notes}</textarea>
+      </div>
+    </div>`;
+  }
+
+  html += `<p id="step-error" class="form-error" style="margin-top:12px;display:none"></p></div>`;
+  return html;
+}
+
+// ── Step 5: Review ──
+function renderReviewStep(avail) {
+  const vehicle = VEHICLES.find(v => v.id === state.vehicle);
+  const exec = avail.salesExecs.find(e => e.id === state.exec);
+  const dateLabel = avail.dates.find(d => d.date === state.date)?.label;
+  const rows = [
+    { ico: "user", label: "Name", value: fullName() },
+    { ico: "mail", label: "Email", value: state.email },
+    { ico: "phone", label: "Phone", value: state.phone },
+    { ico: "car", label: "Vehicle", value: vehicle?.name || state.vehicle },
+    { ico: "map-pin", label: "Branch", value: state.branch },
+    { ico: "calendar", label: "Date", value: dateLabel },
+    { ico: "clock", label: "Time", value: state.time },
+    { ico: "user", label: "Sales Exec", value: exec?.name || "No Preference" },
+  ];
+
+  let html = `<div class="step-content">
+    <h3 class="section-title">Review your booking</h3>
+    <div class="review-card">
+      <div class="review-accent"></div>
+      <div class="review-body">
+        ${rows.map((r, i) => `
+          <div class="review-row" ${i === rows.length - 1 && !state.wantsPartEx ? 'style="border-bottom:none"' : ''}>
+            <div class="review-icon">${icon(r.ico)}</div>
+            <div>
+              <p class="review-label">${r.label}</p>
+              <p class="review-value">${r.value}</p>
+            </div>
+          </div>
+        `).join("")}
+        ${state.wantsPartEx ? `
+          <div class="review-partex">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+              ${icon("exchange")}
+              <span style="font-size:14px;font-weight:700;color:var(--h-primary)">Part Exchange</span>
+            </div>
+            <p style="font-size:13px;color:var(--h-dark-grey);line-height:1.6">
+              ${state.px.year} ${state.px.make} ${state.px.model} — Reg: ${state.px.registration} — ${state.px.mileage} miles
+              ${state.px.notes ? '<br>Notes: ' + state.px.notes : ''}
+            </p>
+            <p style="font-size:12px;color:var(--h-accent);font-weight:600;margin-top:8px">
+              Valuation will be emailed to the branch ahead of your visit.
+            </p>
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  </div>`;
+  return html;
+}
+
+// ─── STEP EVENT BINDING ──────────────────────────────────────────────────────
+function bindStepEvents(avail) {
+  switch (state.step) {
+    case 0:
+      document.querySelectorAll("[data-vehicle]").forEach(el => {
+        el.addEventListener("click", () => { state.vehicle = el.dataset.vehicle; render(); });
+      });
+      break;
+    case 1:
+      document.querySelectorAll("[data-branch]").forEach(el => {
+        el.addEventListener("click", () => { state.branch = el.dataset.branch; state.exec = ""; render(); });
+      });
+      break;
+    case 2:
+      document.querySelectorAll("[data-date]").forEach(el => {
+        el.addEventListener("click", () => { state.date = el.dataset.date; state.time = ""; render(); });
+      });
+      document.querySelectorAll("[data-exec]").forEach(el => {
+        el.addEventListener("click", () => { state.exec = el.dataset.exec; state.time = ""; render(); });
+      });
+      document.querySelectorAll("[data-time]").forEach(el => {
+        el.addEventListener("click", () => {
+          if (el.dataset.booked) return;
+          state.time = el.dataset.time; render();
+        });
+      });
+      break;
+    case 3:
+      ["title", "firstName", "surname", "email", "phone"].forEach(f => {
+        const el = document.getElementById("f-" + f);
+        if (el) {
+          const evt = el.tagName === "SELECT" ? "change" : "input";
+          el.addEventListener(evt, (e) => { state[f] = e.target.value; });
+        }
+      });
+      break;
+    case 4:
+      document.querySelectorAll("[data-partex]").forEach(el => {
+        el.addEventListener("click", () => {
+          state.wantsPartEx = el.dataset.partex === "yes";
+          render();
+        });
+      });
+      ["reg", "miles", "make", "model", "year", "colour", "notes"].forEach(f => {
+        const el = document.getElementById("px-" + f);
+        if (el) {
+          const key = { reg: "registration", miles: "mileage", make: "make", model: "model", year: "year", colour: "colour", notes: "notes" }[f];
+          el.addEventListener("input", (e) => { state.px[key] = e.target.value; });
+        }
+      });
+      break;
+  }
+}
+
+// ─── VALIDATION ──────────────────────────────────────────────────────────────
+function validateStep() {
+  const errEl = document.getElementById("step-error");
+  
+  if (state.step === 0 && !state.vehicle) {
+    if (errEl) { errEl.textContent = "Please select a vehicle"; errEl.style.display = "block"; }
+    return false;
+  }
+  if (state.step === 1 && !state.branch) {
+    if (errEl) { errEl.textContent = "Please select a branch"; errEl.style.display = "block"; }
+    return false;
+  }
+  if (state.step === 2) {
+    if (!state.date || !state.exec || !state.time) {
+      if (errEl) {
+        errEl.textContent = !state.date ? "Please select a date" : !state.exec ? "Please select a sales executive" : "Please select a time";
+        errEl.style.display = "block";
+      }
+      return false;
+    }
+  }
+  if (state.step === 3) {
+    let valid = true;
+    if (!state.title) { showFieldError("err-title", "Please select a title"); valid = false; }
+    if (!state.firstName.trim()) { showFieldError("err-firstName", "Please enter your first name"); valid = false; }
+    if (!state.surname.trim()) { showFieldError("err-surname", "Please enter your surname"); valid = false; }
+    if (!state.email.trim() || !/\S+@\S+\.\S+/.test(state.email)) { showFieldError("err-email", "Please enter a valid email"); valid = false; }
+    if (!state.phone.trim()) { showFieldError("err-phone", "Please enter your phone number"); valid = false; }
+    return valid;
+  }
+  if (state.step === 4 && state.wantsPartEx === null) {
+    if (errEl) { errEl.textContent = "Please select an option"; errEl.style.display = "block"; }
+    return false;
+  }
+  return true;
+}
+
+function showFieldError(id, msg) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.style.display = "block"; }
+}
+
+function handleNext() {
+  if (validateStep()) { state.step++; state._fullRedraw = true; render(); window.scrollTo(0, 0); }
+}
+
+async function handleSubmit() {
+  state.loading = true;
+  state._fullRedraw = true;
+  render();
+
+  const ref = generateRef();
+  const data = {
+    action: "submitBooking",
+    bookingRef: ref,
+    bookingCode: state.bookingCode || "CONQUEST",
+    name: state.name,
+    email: state.email,
+    phone: state.phone,
+    vehicle: state.vehicle,
+    branch: state.branch,
+    date: state.date,
+    time: state.time,
+    salesExec: state.exec,
+    hasPartEx: state.wantsPartEx,
+    partEx: state.wantsPartEx ? state.px : null,
+    accessMode: state.accessMode,
+  };
+
+  await submitBooking(data);
+  state.bookingRef = ref;
+  state.loading = false;
+  state.screen = "confirmation";
+  render();
+}
+
+// ─── CONFIRMATION SCREEN ─────────────────────────────────────────────────────
+function renderConfirmation() {
+  const avail = state.availability || DEMO_DATA;
+  const vehicle = VEHICLES.find(v => v.id === state.vehicle);
+  const exec = avail.salesExecs.find(e => e.id === state.exec);
+  const dateLabel = avail.dates.find(d => d.date === state.date)?.label;
+
+  const rows = [
+    { ico: "car", label: "Vehicle", value: vehicle?.name || state.vehicle },
+    { ico: "calendar", label: "Date", value: dateLabel },
+    { ico: "clock", label: "Time", value: state.time },
+    { ico: "user", label: "Sales Executive", value: exec?.name || "Next Available" },
+    { ico: "map-pin", label: "Branch", value: state.branch },
+  ];
+
+  app.innerHTML = `
+    <div class="confirm-screen">
+      <div class="gate-bg-orb gate-bg-orb-1"></div>
+
+      <div class="animate-in" style="width:100%;max-width:480px;text-align:center">
+        <div class="confirm-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+
+        <h2 style="color:var(--h-white);font-size:28px;font-weight:800;margin-bottom:8px">You're Booked!</h2>
+        <p style="color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:32px">Your Drive Electric experience awaits</p>
+
+        <div class="confirm-ref">
+          <p class="confirm-ref-label">BOOKING REFERENCE</p>
+          <p class="confirm-ref-code">${state.bookingRef}</p>
+        </div>
+
+        <div class="confirm-summary">
+          ${rows.map((r, i) => `
+            <div class="confirm-row" ${i === rows.length - 1 ? 'style="border-bottom:none"' : ''}>
+              <div class="confirm-row-icon">${icon(r.ico)}</div>
+              <div>
+                <p class="confirm-row-label">${r.label}</p>
+                <p class="confirm-row-value">${r.value}</p>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;line-height:1.6;margin-bottom:24px">
+          A confirmation email has been sent to <strong style="color:var(--h-white)">${state.email}</strong>.
+          ${state.wantsPartEx ? ' Your part exchange details have been forwarded for valuation.' : ''}
+        </p>
+
+        <button class="btn btn-ghost" id="btn-another" style="padding:14px 32px">Book Another Slot</button>
+      </div>
+
+      <div style="margin-top:40px;text-align:center">${rmgLogo()}</div>
+    </div>
+  `;
+
+  document.getElementById("btn-another").addEventListener("click", () => {
+    // Reset state
+    state.screen = "gate";
+    state._fullRedraw = true;
+    state.accessMode = null;
+    state.bookingCode = "";
+    state.step = 0;
+    state.vehicle = "";
+    state.branch = "";
+    state.date = "";
+    state.time = "";
+    state.exec = "";
+    state.title = "";
+    state.firstName = "";
+    state.surname = "";
+    state.email = "";
+    state.phone = "";
+    state.wantsPartEx = null;
+    state.px = { registration: "", mileage: "", make: "", model: "", year: "", colour: "", notes: "" };
+    state.bookingRef = "";
+    state.errors = {};
+    render();
+  });
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
