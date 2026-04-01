@@ -658,6 +658,13 @@ function fullName() {
   return state.title + " " + state.firstName + " " + state.surname;
 }
 
+function getTimeGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  if (hour < 17) return "Good Afternoon";
+  return "Good Evening";
+}
+
 function generateRef() {
   return "HDE-" + Date.now().toString(36).toUpperCase().slice(-6);
 }
@@ -673,7 +680,20 @@ async function fetchAvailability() {
 }
 
 async function verifyCode(code) {
-  if (CONFIG.DEMO_MODE) return { valid: code.length >= 4 };
+  if (CONFIG.DEMO_MODE) {
+    // Demo: simulate a returning customer with pre-filled data
+    if (code.length >= 4) {
+      return {
+        valid: true,
+        title: "Mr",
+        firstName: "John",
+        surname: "Smith",
+        email: "john.smith@example.com",
+        phone: "07700 900001"
+      };
+    }
+    return { valid: false, message: "Invalid booking code." };
+  }
   try {
     const res = await fetch(CONFIG.SCRIPT_URL + "?action=verifyCode&code=" + encodeURIComponent(code));
     return await res.json();
@@ -795,8 +815,12 @@ async function handleVerify() {
   if (result.valid) {
     state.accessMode = "code";
     state.screen = "booking";
-    if (result.customerName) state.name = result.customerName;
+    // Pre-fill customer data from booking code record
+    if (result.title) state.title = result.title;
+    if (result.firstName) state.firstName = result.firstName;
+    if (result.surname) state.surname = result.surname;
     if (result.email) state.email = result.email;
+    if (result.phone) state.phone = result.phone;
     loadAvailability();
   } else {
     errEl.textContent = result.message || "Invalid booking code. Please try again.";
@@ -894,7 +918,27 @@ function renderCurrentStep(avail) {
 
 // ── Step 0: Vehicle ──
 function renderVehicleStep() {
+  // Build welcome banner for customers who logged in with a code
+  let welcomeBanner = "";
+  if (state.accessMode === "code" && state.firstName) {
+    const greeting = getTimeGreeting();
+    const displayName = state.title
+      ? state.title + " " + state.surname
+      : state.firstName;
+    welcomeBanner = `
+      <div style="background:linear-gradient(135deg, var(--h-primary), #003D7A);border-radius:16px;padding:24px;margin-bottom:24px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(0,170,210,0.15)"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;border-radius:50%;background:rgba(0,229,255,0.1)"></div>
+        <div style="position:relative;z-index:1">
+          <p style="color:var(--h-accent);font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:6px">${greeting.toUpperCase()}</p>
+          <h2 style="color:var(--h-white);font-size:22px;font-weight:800;margin-bottom:6px">${greeting}, ${displayName}</h2>
+          <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.5;margin:0">Welcome to the Hyundai Drive Electric experience. Let's get your test drive booked.</p>
+        </div>
+      </div>`;
+  }
+
   return `<div class="step-content">
+    ${welcomeBanner}
     <h3 class="section-title">Which vehicle interests you?</h3>
     <div class="vehicle-grid">
       ${VEHICLES.map(v => `
